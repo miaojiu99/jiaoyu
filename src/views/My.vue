@@ -102,7 +102,7 @@
           <span class="custom-title">我的文章</span>
         </template>
       </van-cell>
-      <van-cell is-link :to="{path: 'apply', query: {status:obj_data.status }}" is-link >
+      <van-cell is-link :to="{path: 'apply', query: {status:obj_data.status }}"  >
         <template slot="title">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#iconshenqing" />
