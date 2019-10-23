@@ -297,7 +297,7 @@ export default {
   }
   .van-swipe {
     height: 40vw;
-    margin: 16vw 3vw 2vw;
+    margin: 2vw 3vw 2vw;
     overflow: hidden;
     border-radius: 0.2rem;
 
