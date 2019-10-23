@@ -7,7 +7,7 @@
       <van-field v-model="opening" label="开户行" placeholder="请输入开户行" />
       <van-field v-model="bank" label="银行卡号" placeholder="请输入银行卡号" />
 <div style="text-align: center">
-<van-button type="info" size="large" @click="onClickRight">完成</van-button>
+<van-button type="info" size="large" @click="onClickRight" color="linear-gradient(to bottom, #ff8c68, #f95341)">完成</van-button>
 </div>
       
     </main>

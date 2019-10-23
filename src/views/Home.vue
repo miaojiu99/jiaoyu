@@ -68,10 +68,10 @@
     <div class="home-notify">
        <div class="home-notice">
         <h3>
-          <em>
+          
             教育
             <span style="color:#17aa51">公告</span>
-          </em>
+          
         </h3>
 
         <div class="home-bar"></div>
@@ -93,7 +93,7 @@
         <img src="@/assets/images/notice.jpg" />
       </div> -->
 
-      <h3 class="home-teacher-recommend van-hairline--bottom">老师推荐</h3>
+      <!-- <h3 class="home-teacher-recommend van-hairline--bottom">老师推荐</h3>
 
       <div class="recommend">
         <div
@@ -109,17 +109,20 @@
           <h3>{{i.name}}</h3>
           <p>{{i.message}}</p>
         </div>
-      </div>
+      </div> -->
     </div>
 
-    <van-tabs v-model="active" color="#0af" sticky>
+    <!-- <van-tabs v-model="active" color="#0af" sticky>
       <van-tab title="全部"></van-tab>
       <van-tab title="最新上架"></van-tab>
       <van-tab title="热销老师"></van-tab>
-    </van-tabs>
-
+    </van-tabs> -->
+    <van-cell-group>
+      <van-cell title="名师推荐" is-link value="查看全部" />
+    </van-cell-group>
     <!-- 老师列表 -->
-    <div
+    <div class="home-list">
+<div
       v-for="i in teacherList"
       :key="i.id"
       class="home-teacher-list van-hairline--bottom"
@@ -138,17 +141,18 @@
       </van-image>
 
       <div class="home-teacher-list-text">
-        <p class="home-teacher-list-message van-ellipsis">{{i.message}}</p>
-
-        <div class="home-teacher-list-name">
-          <span>{{i.name}}老师</span>
+        <div class="home-teacher-list-name">{{i.name}}老师
+          <span>{{i.number}}节课程</span>
         </div>
-
-        <div class="home-teacher-list-money">¥{{i.money}}
-          <span>{{i.number}}篇文章</span>
+        <p class="home-teacher-list-message">{{i.message}}</p>
+        <div class="home-teacher-list-money">
+          <!-- ¥{{i.money}} -->
+          
         </div>
       </div>
     </div>
+    </div>
+    
 
     <br />
     <br />
@@ -156,7 +160,7 @@
 
     <van-tabbar v-model="active">
       <van-tabbar-item icon="wap-home" to="/">首页</van-tabbar-item>
-      <van-tabbar-item icon="award" to="/quiz">提问</van-tabbar-item>
+      <van-tabbar-item icon="award" to="/quiz">学堂</van-tabbar-item>
       <van-tabbar-item icon="manager" to="my">账号</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -251,7 +255,7 @@ export default {
 .home {
   width: 100vw;
   min-height: 100vw;
-  
+  background: #f4f2f3;
 
   .icon {
     width: 1.2rem;
@@ -293,14 +297,14 @@ export default {
   }
   .van-swipe {
     height: 40vw;
-    margin: 12vw 3vw 2vw;
+    margin: 16vw 3vw 2vw;
     overflow: hidden;
     border-radius: 0.2rem;
 
   }
 
   .van-grid {
-    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
     padding: 2vw 0;
     background: #fff;
     span {
@@ -341,13 +345,13 @@ export default {
   // 通知公告和老师推荐
   .home-recommend {
     padding: 0.3rem 0.4rem;
-    background: #fff;
-    margin-bottom: 0.3rem;
-    margin-top: 0.3rem;
+    // background: #fff;
+    // margin-bottom: 0.3rem;
+    // margin-top: 0.3rem;
 
-    .van-row{
-      margin-bottom: 4vw;
-    }
+    // .van-row{
+    //   margin-bottom: 4vw;
+    // }
     .home-teacher-recommend {
       padding-bottom: 2vw;
     }
@@ -399,10 +403,29 @@ export default {
   }
 
   // 老师列表
-  .home-teacher-list {
-    margin:0.2rem 0.4rem;
-    padding: 2vw 0.2rem;
+  .van-cell-group{
+    background: none;
+    .van-cell{
+      background: none;
+    }
+    .van-cell__title{
+      font-size: 0.44rem;
+      color: #000;
+      font-weight: bold;
+    }
+    .van-cell__value{
+      font-size: 0.3rem;
+    }
+  }
+  .home-list{
+    margin:0 0.4rem;
+    padding-left:0.2rem;
+    border-radius: 0.2rem;
     overflow: hidden;
+    background: #fff;
+  }
+  .home-teacher-list {
+    padding: 4vw 0.2rem 4vw 0;
     background: #fff;
     display: flex;
     justify-content: space-between;
@@ -414,29 +437,31 @@ export default {
     }
     .van-hairline--bottom::after{border-bottom-width:0;}
     .home-teacher-list-message {
-      height: 0.8rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-height: 0.7rem;
       width: 55vw;
+      font-size: 0.32rem;
+      color: #666;
+
     }
 
     .home-teacher-list-name {
-      color: #666;
-      font-size: 0.32rem;
-      margin-bottom: 3vw;
-    }
-    // .home-teacher-list-name span:nth-last-child(1) {
-    //   margin-left: 5vw;
-    // }
-
-    .home-teacher-list-money {
-      color: #f44;
-
+      margin-bottom: 2vw;
+      color: #000;
+      font-weight: bold;
+      font-size: 0.4rem;
       span{
+        float: right;
+        text-align: right;
         color: #999;
         font-size: 0.32rem;
-        text-align: right;
-        float:right;
       }
     }
+    
   }
 }
 </style>

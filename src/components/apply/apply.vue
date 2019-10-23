@@ -32,7 +32,7 @@
 
       <br>
       <br>
-      <van-button type="info" size="large" @click="onChange">确认申请</van-button>
+      <van-button type="info" size="large" @click="onChange" color="linear-gradient(to bottom, #ff8c68, #f95341)">确认申请</van-button>
     </main>
 
     <van-popup v-model="showPicker" position="bottom">

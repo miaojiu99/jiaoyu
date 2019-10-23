@@ -12,23 +12,30 @@
           <span class="comm-time">{{obj_data.create_time}}</span>
         </div>
         
-        <h3 class="quiz-content-h3">{{obj_data.title}}</h3>
-        <div class="comm-desc">问题描述：{{obj_data.message}}</div>
+        <!-- <h3 class="quiz-content-h3">{{obj_data.title}}</h3> -->
+        <div class="comm-desc">{{obj_data.message}}</div>
+        <div class="quiz-content-h3">
+          <span><van-icon name="comm iconfont iconyuedu" />556</span>
+          <span><van-icon name="comm iconfont icondianzan" />556</span>
+        </div>
       </div>
       <div class="comm-all">
-        <van-cell title="全部回答" icon="comm iconfont iconquestion" />
+        <van-cell title="全部回答" />
         <div class="quiz-content-wrap" v-for="(i, index) in replyList" :key="index">
           <van-image round width="1.2rem" height="1.2rem" :src="i.avatar" />
           <div class="wrap-discern">
-            <h3 class="wrap-title">{{i.name}}</h3>
-            <div class="comm-time">{{i.create_time}}</div>
+            <h3 class="wrap-title">{{i.name}}
+              <span>{{i.create_time}}</span>
+            </h3>
+            
             <div class="comm-desc">{{i.reply}}</div>
+            
           </div>
         </div>
       </div>
     </main>
 
-<van-button type="info" class="quiz-content-onclick" size="large" @click="isReplyShow = true" >我要回答</van-button>
+<van-button type="info" class="quiz-content-onclick"  color="linear-gradient(to bottom, #ff8c68, #f95341)" size="large" @click="isReplyShow = true" >我要回答</van-button>
 
     
 
@@ -107,7 +114,8 @@ export default {
 .quiz-content {
   width: 100vw;
   min-height: 100vh;
-
+h3{
+      font-weight: normal;}
   main {
     margin-bottom: 10vh;
     margin-top: 12vh;
@@ -123,7 +131,9 @@ export default {
   .comm-desc {
     line-height: 6vw;
     word-break: break-all;
-    font-size: 0.35rem;
+    font-size: 0.42rem;
+    margin-top: 0.4rem;
+    line-height: 0.76rem;
   }
 
   .quiz-content-only {
@@ -131,7 +141,13 @@ export default {
     background: #fff;
     .quiz-content-h3{
       margin-top:0.3rem;
-      margin-bottom: 0.2rem;
+      span{
+        font-size: 0.34rem;
+        i{margin-right: 0.2rem;}
+      }
+      span:last-of-type{
+        float: right;
+    }
     }
 
     .only-flex {
@@ -170,6 +186,11 @@ export default {
     .wrap-title {
       margin: 0.15rem 0;
       font-size: 0.36rem;
+      span{
+        float: right;
+        color: #999;
+        font-size: 0.3rem;
+      }
     }
 
     .wrap-content {
@@ -177,7 +198,10 @@ export default {
       line-height: 0.6rem;
     }
   }
-
+.van-cell__title{
+  font-size: 0.4rem;
+  color: #000;
+}
   // 点击回复
   
     .quiz-content-onclick{
@@ -185,8 +209,6 @@ export default {
     position: fixed;
     bottom: 0vh;
     z-index: 99;
-      height: 36px;
-      line-height: 36px;
     }
 
   //   回复弹框

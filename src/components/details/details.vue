@@ -8,11 +8,19 @@
       :z-index="99"
       @click-left="$router.go(-1)"
     />
-    <van-image width="100vw" style="margin-top: 20vw;" height="40vw" :src="obj_data.avatar" />
+    <van-image width="100vw" style="margin-top: 20vw;" height="50vw" :src="obj_data.avatar" />
     <div class="details-header">
-      <div class="details-header-desc">
-        <h3>{{obj_data.name}}老师</h3>
-        <van-button
+      <div class="details-header-desc"><h3>{{obj_data.name}}老师</h3></div>
+      <p class="details-header-phone">没有教不好的学生</p>
+    </div>
+    <!-- 手机号:{{obj_data.phone}} -->
+    <!-- 购买 -->
+    <div>
+      <van-button  class="details-buy" v-if="obj_data.write == 0" @click="show = true" color="linear-gradient(to right, #ff8c68, #f95341)" type="info">购买 </van-button>
+    </div>
+    <div class="detail-money">
+    <h3>￥{{obj_data.money}}</h3>
+      <van-button
           class="tag-btn"
           v-if="activeAttention == 1"
           @click="onAttention"
@@ -21,27 +29,26 @@
           size="normal"
           color="#f95341"
         >已关注</van-button>
-
         <van-button class="tag-btn" v-else @click="onAttention" type="primary"  color="#ff8c68" size="normal">关注</van-button>
-      </div>
-      <p class="details-header-phone">手机号:{{obj_data.phone}}</p>
-    </div>
-
-    <!-- 购买 -->
-    <div>
-      <van-button  class="details-buy" v-if="obj_data.write == 0" @click="show = true" color="linear-gradient(to right, #ff8c68, #f95341)" type="info">购买 ￥{{obj_data.money}}</van-button>
     </div>
     
 
     <van-tabs v-model="active">
-      <van-tab title="个人介绍">
+      <van-tab title="介绍">
         <p class="details-header-message">
           {{obj_data.message}}
         </p>
       </van-tab>
 
-      <van-tab title="文章列表">
-        <div v-for="(i,index) in articleList" :key="index" @click="$router.push({path: '/read', query: {id: i.id}})" class="article van-hairline--bottom">
+      <van-tab title="课程">
+        <van-collapse v-model="activeNames">
+          <van-collapse-item  v-for="(i,index) in articleList" :key="index" @click="$router.push({path: '/read', query: {id: i.id}})">
+            <div slot="title">{{i.name}}<van-icon /></div>
+           {{i.title}}
+          </van-collapse-item>
+        </van-collapse>
+
+        <!-- <div v-for="(i,index) in articleList" :key="index" @click="$router.push({path: '/read', query: {id: i.id}})" class="article van-hairline--bottom">
         <van-image
           width="30vw"
           height="23vw"
@@ -49,23 +56,21 @@
           fit="cover"
           style="margin-right: 3vw"
           lazy-load
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
+          src="https://img.yzcdn.cn/vant/cat.jpeg" />
+
         <div class="article-teacher-list">
           <div class="article-time">
             <van-tag type="warning" plain class="post">专栏</van-tag>
             <span class="name">{{i.name}}</span>
-            <!-- <span>{{i.create_time}}</span> -->
+            <span>{{i.create_time}}</span>
           </div>
-          <p class="article-title van-ellipsis">{{i.title}}</p>
-          <div class="article-teacher-list-money">¥{{i.money}}
-
+          <p class="article-title">{{i.title}}</p>
+          <div class="article-teacher-list-money">¥{{i.money}}</div>
         </div>
-        </div>
-        </div>
+        </div> -->
       </van-tab>
 
-      <van-tab title="老师评价">
+      <van-tab title="评价(0)">
         <div
           v-for="(i, index) in commentList"
           :key="index"
@@ -133,7 +138,8 @@ export default {
       teacherId: "", // 老师id
       obj_data: "",
       articleList: "", //文章列表
-      commentList: "" // 评论列表
+      commentList: "" ,// 评论列表
+      activeNames: ['1']
     };
   },
 
@@ -308,10 +314,10 @@ export default {
   .details-header {
     position: relative;
     z-index: 999;
-    width: 80vw;
+    width: 84vw;
     border-radius: 0.2rem;
     box-shadow: 0 5px 4px 0px #f5f5f5;
-    margin:-10vw auto 4vw;
+    margin:-8vw auto 4vw;
     background: #fff;
     padding: 0.4rem;
 
@@ -337,7 +343,21 @@ export default {
       font-size: 0.4rem;
     }
   }
-
+.detail-money{
+  padding: 0.4rem;
+  height: 8vh;
+  h3{
+    font-size: 0.54rem;
+    color: #f95341;
+    float: left;
+  }
+  .van-button--primary{
+    font-size: 0.34rem;
+    float: right;
+    height: 26px;
+    line-height: 24px;
+  }
+}
   .details-buy {
     width: 100%;
     position: fixed;
@@ -392,7 +412,9 @@ export default {
       font-size: 0.3rem;
     }
   }
-
+.van-collapse-item__content{
+  background: #f9f9f9;
+}
   .van-nav-bar {
     z-index: 99;
     
@@ -436,7 +458,15 @@ export default {
     align-items: center;
   }
   .article-title{
-    margin: 0.4rem 0 0.2rem;
+    overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    margin: 0.3rem 0 0.2rem;
+    font-size: 0.34rem;
+    height: 6vh;
+
   }
   .article-teacher-list-money{
     color: #f44;
@@ -450,12 +480,16 @@ export default {
   //   margin: 0 0.1rem;
   //   color: #b2bac2;
   // }
-
-  .name:after {
-    content: "·";
-    margin: 0 0.1rem;
-    color: #b2bac2;
-  }
+.name{
+  
+    color: #000;
+    font-size: 0.4rem;
+}
+  // .name:after {
+  //   content: "·";
+  //   margin: 0 0.1rem;
+  //   color: #b2bac2;
+  // }
 
   .popup {
     padding: 0.4rem;

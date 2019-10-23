@@ -6,16 +6,18 @@
       <!--  -->
       <div v-for="(i, index) in writeList" :key="index">
         <van-swipe-cell :on-close="onClose" :name="i.id" v-if="i.show">
-          <div
-            class="articles van-hairline--bottom"
-            @click="$router.push({path: '/setarticle', query: {id: i.id}})"
-          >
+          <div class="articles van-hairline--bottom" @click="$router.push({path: '/setarticle', query: {id: i.id}})" >
+          
+          <van-image class="order-wrap-img" width="26vw" height="16vw" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <div class="article-text">
             <div class="article-time">
-              <span class="post">专栏</span>
+              <van-tag color="#f2826a" class="post" plain>专栏</van-tag>
               <span class="name">{{i.name}}</span>
-              <span>{{i.create_time}}</span>
+              <span class="time">{{i.create_time}}</span>
             </div>
             <p class="article-title van-ellipsis">{{i.title}}</p>
+          </div>
+            
           </div>
 
           <template slot="right">
@@ -104,26 +106,43 @@ main{
     line-height: 0.6rem;
     box-sizing: border-box;
   }
+  .van-image--round{
+    float: left;
+  }
+  .article-text{
+    float: right;
+    width: 62vw;
 
+  }
   .article-time {
     color: #909090;
     display: flex;
     align-items: center;
+
   }
 
   .post {
-    color: #1989fa;
+    margin-right: 0.2rem;
   }
-  .post:after {
-    content: "·";
-    margin: 0 0.1rem;
-    color: #b2bac2;
-  }
+  // .post:after {
+  //   content: "·";
+  //   margin: 0 0.1rem;
+  //   color: #b2bac2;
+  // }
 
-  .name:after {
-    content: "·";
-    margin: 0 0.1rem;
-    color: #b2bac2;
+  // .name:after {
+  //   content: "·";
+  //   margin: 0 0.1rem;
+  //   color: #b2bac2;
+  // }
+  .time{
+    float: right;
+    text-align: right;
+    color: #999;
+    font-size: 0.3rem;
+  }
+  .article-title{
+    margin-top: 0.2rem;
   }
 }
 </style>

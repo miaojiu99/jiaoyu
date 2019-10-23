@@ -10,8 +10,24 @@
     />
 
     <main>
+      
+
       <div class="quiz-container" v-for="(i, index) in list" :key="index" @click="$router.push({path: '/quiz-content', query: {id: i.id}})">
-      <div class="quiz-container-up">
+      <div class="only-flex">
+          <van-image round width="1rem" height="1rem" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <!-- <template v-slot:error>加载失败</template> -->
+          </van-image>
+          <h3 class="only-flex-name">昵称</h3>
+          <span class="comm-time">2019-10-24</span>
+        </div>
+        <h3 class="quiz-content-h3">提问问题描述提问问题描述提问问题描述提问问题描述提问问题描述提问问题描述提问问题描述提问问题描述提问问题描述提问问题描述提问问题描述</h3>
+        <div class="comm-desc">
+          <span><van-icon name="comm iconfont iconyuedu" />556</span>
+          <span><van-icon name="comm iconfont icondianzan" />556</span>
+
+        </div>
+
+      <!-- <div class="quiz-container-up">
         <h3 class="quiz-container-title">{{i.title}}</h3>
         <div class="quiz-container-check">{{i.count}}个回复</div>
       </div>
@@ -19,13 +35,13 @@
         <div class="quiz-container-wrap">
           <div class="quiz-container-time">{{i.create_time}}</div>-
           <span>{{i.name}}</span>
-        </div>
+        </div> -->
       </div>
     </main>
 
     <van-tabbar v-model="active">
       <van-tabbar-item icon="wap-home" to="/">首页</van-tabbar-item>
-      <van-tabbar-item icon="award" to="/quiz">提问</van-tabbar-item>
+      <van-tabbar-item icon="award" to="/quiz">学堂</van-tabbar-item>
       <van-tabbar-item icon="manager" to="my">账号</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -56,18 +72,67 @@ export default {
 .quiz {
   width: 100vw;
   min-height: 100vh;
-
+h3{font-weight: normal;}
   main {
     margin-bottom: 10vh;
     margin-top: 12vh;
   }
+  .comm-time {
+    display: inline-block;
+    font-size: 0.3rem;
+    color: #888;
+    margin-bottom: 0.2rem;
+  }
 
+  .comm-desc {
+    margin-top: 4vw;
+    word-break: break-all;
+    font-size: 0.35rem;
+    
+    span{
+      font-size: 0.34rem;
+      i{margin-right: 0.2rem;}
+    }
+    span:last-of-type{
+      float: right;
+    }
+  }
+ 
   .quiz-container {
     background: #fff;
-    padding: 0.4rem;
+    margin: 3vw;
+    border-radius: 0.2rem;
+    overflow: hidden;
+    padding:0.4rem 0.3rem 0.3rem;
     margin-bottom: 2vw;
     font-size: 0.3rem;
     line-height: 0.6rem;
+
+    .quiz-content-h3{
+      font-size: 0.42rem;
+      margin: 0.2rem 0;
+      line-height: 0.76rem;
+      // letter-spacing: 1px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .only-flex {
+      display: flex;
+      align-items: center;
+    }
+
+    .van-image__error {
+      font-size: 0.3rem;
+    }
+
+    .only-flex-name {
+      flex: 1;
+      font-size: 0.4rem;
+      margin-left: 0.3rem;
+    }
     .quiz-container-up{
       height: 4vh;
     }

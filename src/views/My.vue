@@ -10,11 +10,10 @@
           <template v-slot:error>上传图片</template>
         </van-image>
         <div class="my-top-title">
-          <h3 class="van-ellipsis" style="width: 70vw" v-if="isName">{{obj_data.name}}</h3>
+          <h3 class="">老师名称</h3>
+          <p class="van-ellipsis" style="width: 70vw; margin-top:0.2rem;" v-if="isName">昵称：{{obj_data.name}}</p>
           <h3 v-else style="color: #f4f4f4">请点击完善自己的个人信息</h3>
         </div>
-
-        <!-- <van-icon size=".5rem" name="setting-o" /> -->
       </div>
 
       <div class="my-top-btn">
@@ -32,7 +31,63 @@
       </div>
     </div>
     <div class="my-order">
-      <van-cell value="查看全部" is-link :to="{path: 'order', query: {teacher:obj_data.teacher }}" icon="comm iconfont icondingdan1">
+      <van-cell>
+        <template slot="title">
+          <span class="custom-title">买在状元</span>
+        </template>
+      </van-cell>
+      <van-grid :border="false" :column-num="3">
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconkecheng2" />
+          </svg>
+          <p>已买课程</p>
+        </van-grid-item>
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconkechengtixi" />
+          </svg>
+          <p>正在进行</p>
+        </van-grid-item>
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconkechengbiao" />
+          </svg>
+          <p>已完课程</p>
+        </van-grid-item>
+      </van-grid>
+    </div>
+
+    <div class="my-order" >
+      <van-cell>
+        <template slot="title">
+          <span class="custom-title">卖在状元</span>
+        </template>
+      </van-cell>
+      <van-grid :border="false" :column-num="3">
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconkecheng1" />
+          </svg>
+          <p>已售课程</p>
+        </van-grid-item>
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconpen" />
+          </svg>
+          <p>正在进行</p>
+        </van-grid-item>
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconkecheng" />
+          </svg>
+          <p>已完课程</p>
+        </van-grid-item>
+      </van-grid>
+    </div>
+
+    <!-- <div class="my-order">
+      <van-cell value="查看全部" is-link :to="{path: 'order', query: {teacher:obj_data.teacher }}" >
         <template slot="title">
           <span class="custom-title">全部订单</span>
         </template>
@@ -42,26 +97,95 @@
         <van-grid-item v-for="value in 1" :key="value" icon="comm iconfont iconzhifu" text="待支付" />
         <van-grid-item v-for="value in 1" :key="value" icon="comm iconfont iconpingjia" text="待评价" />
       </van-grid>
-    </div>
-    
+    </div> -->
 
     <div class="my-bottom">
       <div class="my-tool">
-        <van-cell icon="comm iconfont iconTools">
+        <van-cell>
           <template slot="title">
-            <span class="custom-title">常用工具</span>
+            <span class="custom-title">状元学伴</span>
           </template>
         </van-cell>
       </div>
-      
-      <!-- <van-cell title="我的订单" is-link :to="{path: 'order', query: {teacher:obj_data.teacher }}" />
-      <van-cell title="已购" is-link to="/shop" />
-      <van-cell title="提现" is-link to="/deposit" />
-      <van-cell v-show="isTeacher" title="写文章" is-link to="/article" />
-      <van-cell v-show="isTeacher" title="我的文章" is-link to="/myarticle" />
-      <van-cell title="申请成为老师" :to="{path: 'apply', query: {status:obj_data.status }}" is-link /> -->
-      
-      
+      <van-grid :border="false" :column-num="4">
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icontiwen" />
+          </svg>
+          <p>我的提问</p>
+        </van-grid-item>
+        <van-grid-item @click.stop="$router.push('/attention')">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconguanzhu" />
+          </svg>
+          <p>我的关注</p>
+        </van-grid-item>
+        <van-grid-item :to="{path: 'apply', query: {status:obj_data.status }}" >
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconruzhu" />
+          </svg>
+          <p>申请入驻</p>
+        </van-grid-item>
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconwentishangbao" />
+          </svg>
+          <p>常见问题</p>
+        </van-grid-item>
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconyihuida" />
+          </svg>
+          <p>我的回答</p>
+        </van-grid-item>
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconxingxiang" />
+          </svg>
+          <p>形象照片</p>
+        </van-grid-item>
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconlinian" />
+          </svg>
+          <p>个人理念</p>
+        </van-grid-item>
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconziwojieshao" />
+          </svg>
+          <p>个人介绍</p>
+        </van-grid-item>
+        <van-grid-item v-show="isTeacher" to="/myarticle">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconkecheng3" />
+          </svg>
+          <p>我的课程</p>
+        </van-grid-item>
+        <van-grid-item @click.stop="$router.push('/balance')">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconqianbao" />
+          </svg>
+          <p>我的钱包</p>
+        </van-grid-item>
+        <van-grid-item>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconkefu" />
+          </svg>
+          <p>客服中心</p>
+        </van-grid-item>
+      </van-grid>
+    </div>
+
+    <!-- <div class="my-bottom">
+      <div class="my-tool">
+        <van-cell>
+          <template slot="title">
+            <span class="custom-title">状元学伴</span>
+          </template>
+        </van-cell>
+      </div>
+
       <van-cell is-link :to="{path: 'order', query: {teacher:obj_data.teacher }}" >
         <template slot="title">
           <svg class="icon" aria-hidden="true">
@@ -110,7 +234,7 @@
           <span class="custom-title">申请成为老师</span>
         </template>
       </van-cell>
-    </div>
+    </div> -->
     <br />
     <van-button type="primary" size="large" @click="backLogin" color="linear-gradient(to bottom, #ff8c68, #f95341)">退出登录</van-button>
 
@@ -122,7 +246,7 @@
 
     <van-tabbar v-model="active">
      <van-tabbar-item icon="wap-home" to="/">首页</van-tabbar-item>
-      <van-tabbar-item icon="award" to="/quiz">提问</van-tabbar-item>
+      <van-tabbar-item icon="award" to="/quiz">学堂</van-tabbar-item>
       <van-tabbar-item icon="manager" to="my">账号</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -186,6 +310,7 @@ export default {
 .my {
   width: 100vw;
   min-height: 100vh;
+  background: #f4f2f3;
   
 .van-nav-bar{
   background: none;
@@ -220,6 +345,7 @@ export default {
       position: relative;
       display: flex;
       align-items: center;
+      margin-top: 0.2rem;
     }
 
     // .van-icon-setting-o {
@@ -279,7 +405,17 @@ font-size: 0.3rem;
   .van-grid-item__icon{
     color: #ff8a67;
   }
+  .van-grid-item__content{
+    color: #666;
+    font-size: 0.34rem;
+    .icon{
+      width: 10vw;
+      height: 10vw;
+      margin-bottom: 0.4rem;
+    }
+  }
 }
+
 .my-tool{
   .custom-title{
   font-size: 0.4rem;
@@ -289,8 +425,20 @@ font-size: 0.3rem;
 .my-bottom{
   margin: 2vw 3vw;
   overflow: hidden;
+  padding-bottom: 4vw;
   border-radius: 0.2rem;
   background: #fff;
+
+  .van-grid-item__content{
+    padding: 8px;
+    color: #666;
+    font-size: 0.34rem;
+    .icon{
+      width: 8vw;
+      height: 8vw;
+      margin-bottom: 0.2rem;
+    }
+  }
 
   }
 .van-cell__title{
