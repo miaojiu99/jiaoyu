@@ -270,8 +270,8 @@ export default {
   }
 
   .home-search {
-    position: sticky;
-    top: 8vh;
+    // position: sticky;
+    margin-top: 8vh;
     z-index: 99;
     padding: 2vw 3vw 2vw;
 
