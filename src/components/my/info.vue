@@ -147,9 +147,6 @@ export default {
 .info {
   width: 100vw;
   min-height: 100vh;
-.van-nav-bar{
-  padding: 0;
-}
   .avatar {
     position: relative;
   }

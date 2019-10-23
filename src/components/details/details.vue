@@ -8,7 +8,7 @@
       :z-index="99"
       @click-left="$router.go(-1)"
     />
-    <van-image width="100vw" style="margin-top: 12vw;" height="40vw" :src="obj_data.avatar" />
+    <van-image width="100vw" style="margin-top: 20vw;" height="40vw" :src="obj_data.avatar" />
     <div class="details-header">
       <div class="details-header-desc">
         <h3>{{obj_data.name}}老师</h3>
@@ -29,7 +29,7 @@
 
     <!-- 购买 -->
     <div>
-      <van-button  class="details-buy" v-if="obj_data.write == 0" @click="show = true"color="linear-gradient(to right, #ff8c68, #f95341)" type="info">购买 ￥{{obj_data.money}}</van-button>
+      <van-button  class="details-buy" v-if="obj_data.write == 0" @click="show = true" color="linear-gradient(to right, #ff8c68, #f95341)" type="info">购买 ￥{{obj_data.money}}</van-button>
     </div>
     
 
@@ -395,7 +395,7 @@ export default {
 
   .van-nav-bar {
     z-index: 99;
-    padding-top:0;
+    
   }
   .van-tab{
     color: #333;

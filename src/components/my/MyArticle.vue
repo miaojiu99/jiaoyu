@@ -83,11 +83,9 @@ export default {
 .my-article {
   width: 100vw;
   min-height: 100vh;
-.van-nav-bar{
-  padding: 0;
-}
+
 main{
-  margin-top: 7.4vh;
+  margin-top: 12vh;
 }
   .details-text {
     color: #666;

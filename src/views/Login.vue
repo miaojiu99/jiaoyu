@@ -74,7 +74,7 @@ export default {
   width: 100%;
   box-sizing: border-box;
   padding-top: 2rem;
-  padding: 0 0.4rem;
+  // padding: 0 0.4rem;
   // background: #fff;
 
   /* 水平居中 */

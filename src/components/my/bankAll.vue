@@ -60,12 +60,10 @@ export default {
 .bank-all {
   width: 100vw;
   height: 100vh;
-.van-nav-bar{
-  padding: 0;
-}
+
 main{
   
-   margin-top: 8vh;
+   margin-top: 12vh;
 }
   .bank-all-bank {
     display: flex;

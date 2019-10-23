@@ -56,12 +56,10 @@ export default {
 .quiz {
   width: 100vw;
   min-height: 100vh;
-.van-nav-bar{
-  padding: 0;
-}
+
   main {
     margin-bottom: 10vh;
-    margin-top: 7.4vh;
+    margin-top: 12vh;
   }
 
   .quiz-container {
@@ -100,6 +98,10 @@ export default {
 
     .quiz-container-wrap {
       display: flex;
+
+      span{
+        color:#fbb274; 
+      }
     }
 
     .quiz-container-time {

@@ -352,7 +352,7 @@ export default {
     display: flex;
     align-items: center;
     background: #fff;
-    padding: 2vw 0.3rem 0.1rem;
+    padding: 10vw 0.3rem 0.1rem;
     box-shadow: 0 0 2px 1px #f1f1f1;
   }
 

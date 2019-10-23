@@ -65,12 +65,10 @@ export default {
 .bank {
   width: 100vw;
   height: 100vh;
-.van-nav-bar{
-  padding: 0;
-}
+
 main{
   
-   margin-top: 8vh;
+   margin-top: 12vh;
 }
   .van-cell {
     padding: 0.4rem;

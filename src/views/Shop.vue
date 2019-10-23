@@ -96,9 +96,9 @@ export default {
     fill: currentColor;
     overflow: hidden;
   }
-.van-nav-bar{
-  padding: 0;
-}
+// .van-nav-bar{
+//   padding: 0;
+// }
 // main{
   
 //    margin-top: 8vh;

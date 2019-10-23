@@ -54,9 +54,7 @@ export default {
 .balance {
   width: 100vw;
   height: 100vh;
-.van-nav-bar{
-  padding: 0;
-}
+
   h1 {
       margin: 0;
   }

@@ -189,7 +189,7 @@ export default {
   
 .van-nav-bar{
   background: none;
-  padding: 0;
+  // padding: 0;
 
   .van-nav-bar__left{
     left: 0;

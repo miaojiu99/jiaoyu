@@ -267,7 +267,7 @@ export default {
 
   .home-search {
     position: sticky;
-    top: 0;
+    top: 8vh;
     z-index: 99;
     padding: 2vw 3vw 2vw;
 
@@ -293,7 +293,7 @@ export default {
   }
   .van-swipe {
     height: 40vw;
-    margin: 0vw 3vw 2vw;
+    margin: 12vw 3vw 2vw;
     overflow: hidden;
     border-radius: 0.2rem;
 

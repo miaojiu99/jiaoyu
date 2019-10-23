@@ -58,12 +58,10 @@ export default {
   width: 100vw;
   height: 100vh;
   background: #fff;
-  .van-nav-bar{
-  padding: 0;
-}
+
   main {
     margin-bottom: 10vh;
-    margin-top: 7vh;
+    margin-top: 12vh;
     padding: 0.4rem;
   }
 

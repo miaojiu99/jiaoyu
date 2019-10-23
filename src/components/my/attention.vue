@@ -19,8 +19,8 @@
           </div>
         </div>
 
-        <van-button v-if="i.activeAttention ==1 " type="primary" size="normal" @click.stop="onAttention(i.id)">已关注</van-button>
-        <van-button v-if="i.activeAttention ==0 " size="normal" @click.stop="onAttention(i.id)">关注</van-button>
+        <van-button v-if="i.activeAttention ==1 " type="primary" size="normal" color="#f95341" @click.stop="onAttention(i.id)">已关注</van-button>
+        <van-button v-if="i.activeAttention ==0 " size="normal" color="#ff8c68" @click.stop="onAttention(i.id)">关注</van-button>
       </div>
     </main>
   </div>
@@ -85,9 +85,7 @@ export default {
 .attention {
   width: 100vw;
   min-height: 100vh;
-.van-nav-bar{
-  padding: 0;
-}
+
   .attention-container {
     padding: 0.3rem 0.4rem;
     background: #fff;

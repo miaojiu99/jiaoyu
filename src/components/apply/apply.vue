@@ -160,9 +160,7 @@ export default {
 .apply {
   width: 100vw;
   height: 100vh;
-.van-nav-bar{
-  padding: 0;
-}
+
   /* 水平居中 */
   .level-center {
     margin: 0 auto;
