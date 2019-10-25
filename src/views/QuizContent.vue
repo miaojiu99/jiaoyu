@@ -22,9 +22,9 @@
       <div class="comm-all">
         <van-cell title="全部回答" />
         <div class="quiz-content-wrap" v-for="(i, index) in replyList" :key="index">
-          <van-image round width="1.2rem" height="1.2rem" :src="i.avatar" />
+          <van-image round width="1.2rem" height="1.2rem" :src="i.image" />
           <div class="wrap-discern">
-            <h3 class="wrap-title">{{i.name}}
+            <h3 class="wrap-title">{{i.realName}}
               <span>{{i.create_time}}</span>
             </h3>
             

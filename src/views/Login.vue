@@ -12,11 +12,10 @@
     <br />
 
     <van-button  size="large" color="linear-gradient(to bottom, #ff8c68, #f95341)" type="info" @click="SubmitButton">登录</van-button>
-
+    <van-button  size="large" type="info"  @click="$router.push('/login/register')" color="#f95341" plain>注册</van-button>
     <div class="login-fun">
-      <div class="left" @click="$router.push('/login/forget')">忘记密码?</div>
+      <div class="right" @click="$router.push('/login/forget')">忘记密码?</div>
     </div>
-    <van-button  type="info" class="login-bottom" @click="$router.push('/login/register')" color="#f95341" plain>注册</van-button>
     
   </div>
 </template>
@@ -107,11 +106,14 @@ export default {
     border: 0;
   }
   .login-fun {
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // justify-content: space-between;
     color: #666;
     font-size: 0.36rem;
     margin-top: 0.3rem;
+    .right{
+      float: right;
+    }
   }
 
   .icon {
@@ -132,6 +134,10 @@ export default {
   }
   .van-button--normal{
     padding: 0 30px;
+  }
+  .van-button{
+
+    margin-bottom: 0.5rem;
   }
 }
 </style>

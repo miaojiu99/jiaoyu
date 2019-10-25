@@ -5,9 +5,19 @@
 
       <main>
         <van-cell-group style="margin-top: 2rem;">
-          <van-field left-icon="comm iconfont iconyiliaohangyedeICON-" v-model="userphone" placeholder="手机号"></van-field>
+          <van-field
+            left-icon="comm iconfont iconyiliaohangyedeICON-"
+            v-model="userphone"
+            placeholder="手机号"
+          ></van-field>
 
-          <van-field center left-icon="comm iconfont iconyiliaohangyedeICON-" v-model="code" :disabled="isCode" placeholder="验证码">
+          <van-field
+            center
+            left-icon="comm iconfont iconyiliaohangyedeICON-"
+            v-model="code"
+            :disabled="isCode"
+            placeholder="验证码"
+          >
             <van-button
               :disabled="isCode"
               @click="onCode"
@@ -18,12 +28,26 @@
             >{{ codeText }}</van-button>
           </van-field>
 
-          <van-field type="password" v-model="password" left-icon="comm iconfont iconsuo" placeholder="新密码"></van-field>
-          <van-field type="password" v-model="confpassword" left-icon="comm iconfont iconsuo"  placeholder="确认密码"></van-field>
+          <van-field
+            type="password"
+            v-model="password"
+            left-icon="comm iconfont iconsuo"
+            placeholder="新密码"
+          ></van-field>
+          <van-field
+            type="password"
+            v-model="confpassword"
+            left-icon="comm iconfont iconsuo"
+            placeholder="确认密码"
+          ></van-field>
         </van-cell-group>
         <br />
         <br />
-        <van-button @click="onSubmit" size="large" color="linear-gradient(to bottom, #ff8c68, #f95341)" >完成</van-button>
+        <van-button
+          @click="onSubmit"
+          size="large"
+          color="linear-gradient(to bottom, #ff8c68, #f95341)"
+        >完成</van-button>
         <!-- <van-button @click="onSubmit" size="large">完成</van-button> -->
       </main>
     </div>
@@ -144,7 +168,7 @@ export default {
   width: 100vw;
   height: 100vh;
 
-.van-icon-arrow-left {
+  .van-icon-arrow-left {
     margin-top: 3vw;
     margin-left: 0.4rem;
     color: #f9513e;
@@ -153,18 +177,19 @@ export default {
   main {
     padding: 0.4rem;
   }
-  .van-cell-group{
+  .van-cell-group {
     background: none;
     border: 0;
   }
-  .van-cell{
+  .van-cell {
     border-radius: 5rem;
     margin-bottom: 0.4rem;
   }
-  .van-hairline--top-bottom::after, .van-hairline-unset--top-bottom::after{
-    border-width:0;
+  .van-hairline--top-bottom::after,
+  .van-hairline-unset--top-bottom::after {
+    border-width: 0;
   }
-  .van-cell:not(:last-child)::after{
+  .van-cell:not(:last-child)::after {
     border: 0;
   }
 }

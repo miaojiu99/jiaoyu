@@ -33,7 +33,7 @@
           <p class="home-teacher-list-message van-ellipsis">{{i.message}}</p>
 
           <div class="home-teacher-list-name">
-            <span>{{i.name}}老师</span>
+            <span>{{i.name}}</span>
             <span>{{i.count}}篇文章</span>
           </div>
         </div>

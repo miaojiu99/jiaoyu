@@ -66,32 +66,42 @@
 
     <!-- 老师推荐 -->
     <div class="home-notify">
-       <div class="home-notice">
+      <div class="home-notice" @click="$router.push({path: '/read', query: {id: inform.id, is: 1}})">
         <h3>
-          
-            教育
-            <span style="color:#17aa51">公告</span>
-          
+          教育
+          <span style="color:#17aa51">公告</span>
         </h3>
 
         <div class="home-bar"></div>
         <van-tag round plain type="primary">图文</van-tag>
         &nbsp;
-        {{inform}}
+        {{inform.title}}
       </div>
+
+      <h3 style="margin-top: .25rem;">协议班 &nbsp; <span style="font-weight: 400;color: #666; font-size: .27rem;">学期进步到全班前十名</span> </h3>
     </div>
-    <div class="home-recommend">
-     
+    <div class="home-recommend" v-if="notice">
       <van-row gutter="20">
-        <van-col span="12"><img src="@/assets/images/1.png" /></van-col>
         <van-col span="12">
-          <img src="@/assets/images/2.png" />
-          <img src="@/assets/images/3.png" />
+          <img
+            :src="notice[0].image"
+            @click="$router.push({path: '/read', query: {id: notice[0].id, is: 1}})"
+          />
+        </van-col>
+        <van-col span="12">
+          <img
+            :src="notice[1].image"
+            @click="$router.push({path: '/read', query: {id: notice[1].id, is: 1}})"
+          />
+          <img
+            :src="notice[2].image"
+            @click="$router.push({path: '/read', query: {id: notice[2].id, is: 1}})"
+          />
         </van-col>
       </van-row>
       <!-- <div class="home-notice-img">
         <img src="@/assets/images/notice.jpg" />
-      </div> -->
+      </div>-->
 
       <!-- <h3 class="home-teacher-recommend van-hairline--bottom">老师推荐</h3>
 
@@ -109,50 +119,49 @@
           <h3>{{i.name}}</h3>
           <p>{{i.message}}</p>
         </div>
-      </div> -->
+      </div>-->
     </div>
 
     <!-- <van-tabs v-model="active" color="#0af" sticky>
       <van-tab title="全部"></van-tab>
       <van-tab title="最新上架"></van-tab>
       <van-tab title="热销老师"></van-tab>
-    </van-tabs> -->
+    </van-tabs>-->
     <van-cell-group>
       <van-cell title="名师推荐" is-link value="查看全部" />
     </van-cell-group>
     <!-- 老师列表 -->
     <div class="home-list">
-<div
-      v-for="i in teacherList"
-      :key="i.id"
-      class="home-teacher-list van-hairline--bottom"
-      @click="$router.push({name: 'details', query: { id: i.id }})"
-    >
-      <van-image
-        width="30vw"
-        height="23vw"
-        radius="1vw"
-        style="margin-right: 3vw"
-        fit="cover"
-        lazy-load
-        :src="i.avatar"
+      <div
+        v-for="i in teacherList"
+        :key="i.id"
+        class="home-teacher-list van-hairline--bottom"
+        @click="$router.push({name: 'details', query: { id: i.id }})"
       >
-        <template v-slot:error>加载失败</template>
-      </van-image>
+        <van-image
+          width="30vw"
+          height="23vw"
+          radius="1vw"
+          style="margin-right: 3vw"
+          fit="cover"
+          lazy-load
+          :src="i.image"
+        >
+          <template v-slot:error>加载失败</template>
+        </van-image>
 
-      <div class="home-teacher-list-text">
-        <div class="home-teacher-list-name">{{i.name}}老师
-          <span>{{i.number}}节课程</span>
-        </div>
-        <p class="home-teacher-list-message">{{i.message}}</p>
-        <div class="home-teacher-list-money">
-          <!-- ¥{{i.money}} -->
-          
+        <div class="home-teacher-list-text">
+          <div class="home-teacher-list-name">
+            {{i.realName}}
+            <span>{{i.number}}节课程</span>
+          </div>
+          <p class="home-teacher-list-message">{{i.title}}</p>
+          <div class="home-teacher-list-money">
+            <!-- ¥{{i.money}} -->
+          </div>
         </div>
       </div>
     </div>
-    </div>
-    
 
     <br />
     <br />
@@ -160,8 +169,9 @@
 
     <van-tabbar v-model="active">
       <van-tabbar-item icon="wap-home" to="/">首页</van-tabbar-item>
+      <van-tabbar-item icon="graphic" to="/classify">分类</van-tabbar-item>
       <van-tabbar-item icon="award" to="/quiz">学堂</van-tabbar-item>
-      <van-tabbar-item icon="manager" to="my">账号</van-tabbar-item>
+      <van-tabbar-item icon="manager" to="my">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -178,6 +188,7 @@ export default {
       swiper: "", //轮播图
       recommend: "", //老师推荐
       inform: "", //通知公告
+      notice: "", // 公告
       teacherList: "" //老师列表
     };
   },
@@ -193,8 +204,15 @@ export default {
     // 首页接口
     index() {
       index().then(res => {
+        console.log(res);
+
         if (res.code == 1) {
           const data = res.data;
+
+          this.notice = data.image;
+          for (let i of this.notice) {
+            i.image = global() + i.image;
+          }
 
           // 轮播图
           for (let i of data.figure) {
@@ -203,7 +221,7 @@ export default {
           this.swiper = data.figure;
 
           // 通知公告
-          this.inform = data.write[0].title;
+          this.inform = data.write[0];
 
           // 老师推荐
           var recommendList = data.recommend.filter((item, index) => {
@@ -271,9 +289,8 @@ export default {
 
   .home-search {
     // position: sticky;
-    margin-top: 8vh;
     z-index: 99;
-    padding: 2vw 3vw 2vw;
+    padding: 8vw 3vw 2vw;
 
     font: {
       size: 0.35rem;
@@ -300,7 +317,6 @@ export default {
     margin: 2vw 3vw 2vw;
     overflow: hidden;
     border-radius: 0.2rem;
-
   }
 
   .van-grid {
@@ -314,10 +330,10 @@ export default {
     }
   }
 
-  .van-grid-item__content{
+  .van-grid-item__content {
     padding: 8px;
   }
-  .home-notify{
+  .home-notify {
     padding: 0.3rem 0.4rem;
     background: #fff;
     margin-bottom: 0.3rem;
@@ -403,23 +419,23 @@ export default {
   }
 
   // 老师列表
-  .van-cell-group{
+  .van-cell-group {
     background: none;
-    .van-cell{
+    .van-cell {
       background: none;
     }
-    .van-cell__title{
+    .van-cell__title {
       font-size: 0.44rem;
       color: #000;
       font-weight: bold;
     }
-    .van-cell__value{
+    .van-cell__value {
       font-size: 0.3rem;
     }
   }
-  .home-list{
-    margin:0 0.4rem;
-    padding-left:0.2rem;
+  .home-list {
+    margin: 0 0.4rem;
+    padding-left: 0.2rem;
     border-radius: 0.2rem;
     overflow: hidden;
     background: #fff;
@@ -435,7 +451,9 @@ export default {
       padding: 0.2rem 0.2rem 0 0;
       flex: 3;
     }
-    .van-hairline--bottom::after{border-bottom-width:0;}
+    .van-hairline--bottom::after {
+      border-bottom-width: 0;
+    }
     .home-teacher-list-message {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -446,7 +464,6 @@ export default {
       width: 55vw;
       font-size: 0.32rem;
       color: #666;
-
     }
 
     .home-teacher-list-name {
@@ -454,14 +471,13 @@ export default {
       color: #000;
       font-weight: bold;
       font-size: 0.4rem;
-      span{
+      span {
         float: right;
         text-align: right;
         color: #999;
         font-size: 0.32rem;
       }
     }
-    
   }
 }
 </style>
