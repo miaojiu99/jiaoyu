@@ -7,6 +7,20 @@
       @click-right="$router.push('/quiz-issue')"
     />
 
+    <swiper :options="swiperOption" ref="mySwiper">
+      <!-- slides -->
+      <swiper-slide v-for="(i, index) in questionTypeList" :key="index">
+        <div @click="onClickType(i.id)">
+          <van-image round width="1.2rem" height="1.2rem" :src="i.image" />
+          <p>{{ i.type}}</p>
+        </div>
+      </swiper-slide>
+
+      <!-- Optional controls -->
+      <div class="swiper-pagination" slot="pagination"></div>
+      <!-- <div class="swiper-scrollbar" slot="scrollbar"></div> -->
+    </swiper>
+
     <div class="main" v-show="isTagShow != 2">
       <div
         class="quiz-container"
@@ -56,22 +70,37 @@
 
     <van-tabbar v-model="active">
       <van-tabbar-item icon="wap-home" to="/">首页</van-tabbar-item>
-      <van-tabbar-item icon="graphic" to="/classify">分类</van-tabbar-item>
-      <van-tabbar-item icon="award" to="/quiz">提问</van-tabbar-item>
+      <van-tabbar-item icon="graphic" to="/classify">学堂</van-tabbar-item>
+      <van-tabbar-item icon="award" to="/quiz">大家说</van-tabbar-item>
+      <van-tabbar-item icon="friends" >职场</van-tabbar-item>
       <van-tabbar-item icon="manager" to="my">账号</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
 
 <script>
-import { questionList, myQuestion, myAnswer, global } from "@/api";
+import {
+  questionList,
+  myQuestion,
+  myAnswer,
+  global,
+  questionType
+} from "@/api";
 export default {
   data() {
     return {
       title: "学堂",
       active: 2,
       list: "",
-      isTagShow: ""
+      isTagShow: "",
+      questionTypeList: "",
+      typeId: "", //
+      swiperOption: {
+        slidesPerView: 4,
+        paginationClickable: true,
+        spaceBetween: 20,
+        freeMode: true
+      }
     };
   },
   mounted() {
@@ -102,7 +131,27 @@ export default {
         }
       });
     } else {
-      questionList().then(res => {
+      questionType().then(res => {
+        if (res.code == 1) {
+          for (let i of res.data) {
+            i.image = global() + i.image;
+          }
+
+          this.questionTypeList = res.data;
+          console.log(this.questionTypeList);
+        }
+      });
+
+      this.init();
+    }
+  },
+
+  methods: {
+    init() {
+      const data = {
+        typeId: this.typeId
+      };
+      questionList(data).then(res => {
         if (res.code == 1) {
           this.list = res.data;
           for (let i of this.list) {
@@ -110,6 +159,11 @@ export default {
           }
         }
       });
+    },
+
+    onClickType(value) {
+      this.typeId = value;
+      this.init();
     }
   }
 };
@@ -123,6 +177,16 @@ export default {
   }
   .main {
     margin-bottom: 10vh;
+  }
+
+  .swiper-container {
+    margin: 15px;
+    text-align: center;
+
+    p {
+      font-size: 14px;
+      color: #666;
+    }
   }
   .comm-time {
     display: inline-block;

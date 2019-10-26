@@ -15,30 +15,32 @@
     </van-swipe>
     <van-grid :border="false">
       <van-grid-item @click="$router.push({path: '/search', query: {name: '语文'}})">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#iconxiyuwenquan" />
-        </svg>
-        <span>语文</span>
+        <div class="home-jgicon home-color1">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconxiyuwenquan" />
+          </svg>
+        </div>
+        <span>结对学伴</span>
       </van-grid-item>
       <van-grid-item @click="$router.push({path: '/search', query: {name: '数学'}})">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#iconshuxue1" />
         </svg>
-        <span>数学</span>
+        <span>职场导师</span>
       </van-grid-item>
       <van-grid-item @click="$router.push({path: '/search', query: {name: '英语'}})">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#iconyingyu-abc" />
         </svg>
-        <span>英语</span>
+        <span>公开课</span>
       </van-grid-item>
       <van-grid-item @click="$router.push({path: '/search', query: {name: '物理'}})">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#iconwuli1" />
         </svg>
-        <span>物理</span>
+        <span>一对一客服</span>
       </van-grid-item>
-      <van-grid-item @click="$router.push({path: '/search', query: {name: '化学'}})">
+      <!-- <van-grid-item @click="$router.push({path: '/search', query: {name: '化学'}})">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#iconhuaxuexuanzhong" />
         </svg>
@@ -61,7 +63,7 @@
           <use xlink:href="#iconlishi1" />
         </svg>
         <span>历史</span>
-      </van-grid-item>
+      </van-grid-item> -->
     </van-grid>
 
     <!-- 老师推荐 -->
@@ -77,28 +79,29 @@
         &nbsp;
         {{inform.title}}
       </div>
-
-      <h3 style="margin-top: .25rem;">协议班 &nbsp; <span style="font-weight: 400;color: #666; font-size: .27rem;">学期进步到全班前十名</span> </h3>
     </div>
+    <van-cell-group>
+      <van-cell title="协议班" />
+    </van-cell-group>
     <div class="home-recommend" v-if="notice">
-      <van-row gutter="20">
+      <swiper :options="swiperOption" ref="mySwiper">
+      <!-- slides -->
+      <swiper-slide>
+        <img :src="notice[0].image" @click="$router.push({path: '/read', query: {id: notice[0].id, is: 1}})" />
+      </swiper-slide>
+      <swiper-slide><img :src="notice[1].image" @click="$router.push({path: '/read', query: {id: notice[1].id, is: 1}})"/></swiper-slide>
+      <swiper-slide><img :src="notice[2].image" @click="$router.push({path: '/read', query: {id: notice[2].id, is: 1}})" /></swiper-slide>
+      
+    </swiper>
+      <!-- <van-row gutter="20">
         <van-col span="12">
-          <img
-            :src="notice[0].image"
-            @click="$router.push({path: '/read', query: {id: notice[0].id, is: 1}})"
-          />
+          <img :src="notice[0].image" @click="$router.push({path: '/read', query: {id: notice[0].id, is: 1}})" />
         </van-col>
         <van-col span="12">
-          <img
-            :src="notice[1].image"
-            @click="$router.push({path: '/read', query: {id: notice[1].id, is: 1}})"
-          />
-          <img
-            :src="notice[2].image"
-            @click="$router.push({path: '/read', query: {id: notice[2].id, is: 1}})"
-          />
+          <img :src="notice[1].image" @click="$router.push({path: '/read', query: {id: notice[1].id, is: 1}})"/>
+          <img :src="notice[2].image" @click="$router.push({path: '/read', query: {id: notice[2].id, is: 1}})" />
         </van-col>
-      </van-row>
+      </van-row> -->
       <!-- <div class="home-notice-img">
         <img src="@/assets/images/notice.jpg" />
       </div>-->
@@ -169,8 +172,9 @@
 
     <van-tabbar v-model="active">
       <van-tabbar-item icon="wap-home" to="/">首页</van-tabbar-item>
-      <van-tabbar-item icon="graphic" to="/classify">分类</van-tabbar-item>
-      <van-tabbar-item icon="award" to="/quiz">学堂</van-tabbar-item>
+      <van-tabbar-item icon="graphic" to="/classify">学堂</van-tabbar-item>
+      <van-tabbar-item icon="award" to="/quiz">大家说</van-tabbar-item>
+      <van-tabbar-item icon="friends" >职场</van-tabbar-item>
       <van-tabbar-item icon="manager" to="my">我的</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -189,7 +193,13 @@ export default {
       recommend: "", //老师推荐
       inform: "", //通知公告
       notice: "", // 公告
-      teacherList: "" //老师列表
+      teacherList: "", //老师列表
+      swiperOption: {
+        slidesPerView: 2.4,
+        paginationClickable: true,
+        spaceBetween: 15,
+        freeMode: true
+      }
     };
   },
 
@@ -273,7 +283,7 @@ export default {
 .home {
   width: 100vw;
   min-height: 100vw;
-  background: #f4f2f3;
+  background: #f4f4f4;
 
   .icon {
     width: 1.2rem;
@@ -329,7 +339,21 @@ export default {
       font-size: 0.33rem;
     }
   }
+.home-jgicon{
+  width: 12vw;
+  height: 12vw;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  margin: 10px auto;
 
+  .icon {
+    width: 100%;
+
+  }
+}
+.home-color1{
+  background:linear-gradient(0deg, #fff 0%,#000 100%);
+}
   .van-grid-item__content {
     padding: 8px;
   }
@@ -418,6 +442,10 @@ export default {
     }
   }
 
+.home-xieyi{
+  margin: 24px 0;
+}
+
   // 老师列表
   .van-cell-group {
     background: none;
@@ -438,7 +466,7 @@ export default {
     padding-left: 0.2rem;
     border-radius: 0.2rem;
     overflow: hidden;
-    background: #fff;
+    background: #fefefe;
   }
   .home-teacher-list {
     padding: 4vw 0.2rem 4vw 0;

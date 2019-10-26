@@ -155,7 +155,7 @@ export default {
     const name = this.$route.query.name;
 
     if (name) {
-      this.valueInput = name;
+      // this.valueInput = name;
       this.onSearch();
     }
 

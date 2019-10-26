@@ -5,22 +5,25 @@
     <br />
     <br />
     <br />
-
-    <main>
+    <div class="main" v-if="id == 1">
+      <p v-html="obj_data.content"></p>
+    </div>
+    <div class="main" v-else>
       <h3>{{obj_data.title}}</h3>
 
       <p>{{obj_data.write}}</p>
-    </main>
+    </div>
   </div>
 </template>
 
 <script>
-import { writeMessage } from "@/api";
+import { writeMessage, ofterWriteDetail, global } from "@/api";
 
 export default {
   data() {
     return {
-      obj_data: ""
+      obj_data: "",
+      id: '',
     };
   },
   mounted() {
@@ -28,12 +31,31 @@ export default {
       writeId: this.$route.query.id
     };
 
-    writeMessage(data).then(res => {
-      console.log(res);
-      if (res.code == 1) {
-        this.obj_data = res.data;
-      }
-    });
+    this.id = this.$route.query.is
+
+    if (this.id == 1) {
+      const data = {
+        id: this.$route.query.id
+      };
+      ofterWriteDetail(data).then(res => {
+        console.log(res);
+
+        if (res.code == 1) {
+          if (res.data) {
+            this.obj_data = res.data;
+            this.obj_data.image = global() + res.data.image;
+            this.obj_data.title = "";
+          }
+        }
+      });
+    } else {
+      writeMessage(data).then(res => {
+        if (res.code == 1) {
+          this.obj_data = res.data;
+          console.log(this.obj_data);
+        }
+      });
+    }
   }
 };
 </script>

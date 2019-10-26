@@ -22,10 +22,21 @@ export function avatarPost(data) {
   });
 }
 
+
+
 // 支付宝接口
 export function addOrder(data) {
   return request({
     url: "order/addOrder",
+    method: "post",
+    data
+  });
+}
+
+// 支付保证金
+export function pay(data) {
+  return request({
+    url: "user/pay",
     method: "post",
     data
   });
@@ -44,6 +55,15 @@ export function send(data) {
 export function login(data) {
   return request({
     url: "user/login",
+    method: "post",
+    data
+  });
+}
+
+// 提问类型
+export function questionType(data) {
+  return request({
+    url: "question/type",
     method: "post",
     data
   });
@@ -129,6 +149,25 @@ export function write(data) {
     data
   });
 }
+
+// 常见问题
+export function ofterWrite(data) {
+  return request({
+    url: "write/write",
+    method: "post",
+    data
+  });
+}
+
+// 常见问题编辑
+export function ofterWriteDetail(data) {
+  return request({
+    url: "write/detail",
+    method: "post",
+    data
+  });
+}
+
 
 // 文章详情
 export function writeMessage(data) {
@@ -256,6 +295,16 @@ export function withdrawal(data) {
   });
 }
 
+// 提现记录
+export function withdrawalList(data) {
+  return request({
+    url: "wallet/withdrawalList",
+    method: "post",
+    data
+  });
+}
+
+
 // 我的余额
 export function wallet(data) {
   return request({
@@ -265,10 +314,38 @@ export function wallet(data) {
   });
 }
 
+// 实名信息
+export function realName(data) {
+  return request({
+    url: "user/realName",
+    method: "post",
+    data
+  });
+}
+
+
+// 实名认证申请
+export function realPost(data) {
+  return request({
+    url: "user/realPost",
+    method: "post",
+    data
+  });
+}
+
 // 订单列表
 export function orderList(data) {
   return request({
     url: "order/orderList",
+    method: "post",
+    data
+  });
+}
+
+// 买在状元
+export function buyList(data) {
+  return request({
+    url: "order/buyList",
     method: "post",
     data
   });
@@ -359,6 +436,78 @@ export function questionMessage(data) {
 export function reply(data) {
   return request({
     url: "question/reply",
+    method: "post",
+    data
+  });
+}
+
+// 老师所有类型
+export function teacherTypeWrap(data) {
+  return request({
+    url: "teacher/teacherType",
+    method: "post",
+    data
+  });
+}
+
+// 我的提问
+export function myQuestion(data) {
+  return request({
+    url: "question/myQuestion",
+    method: "post",
+    data
+  });
+}
+
+// 我的回答
+export function myAnswer(data) {
+  return request({
+    url: "question/myAnswer",
+    method: "post",
+    data
+  });
+}
+
+// 形象照片
+export function image(data) {
+  return request({
+    url: "user/image",
+    method: "post",
+    data
+  });
+}
+
+// 形象照片编辑
+export function imagePost(data) {
+  return request({
+    url: "user/imagePost",
+    method: "post",
+    data
+  });
+}
+
+// 个人理念
+export function titleIndex(data) {
+  return request({
+    url: "user/title",
+    method: "post",
+    data
+  });
+}
+
+// 个人理念编辑
+export function titlePost(data) {
+  return request({
+    url: "user/titlePost",
+    method: "post",
+    data
+  });
+}
+
+// 客服中心
+export function service(data) {
+  return request({
+    url: "write/service",
     method: "post",
     data
   });

@@ -8,6 +8,14 @@ import "vant/lib/index.css";
 import { Lazyload } from 'vant';
 Vue.use(Lazyload);
 
+
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+import '@/assets/iconfont/iconfont.js'
+import '@/assets/iconfont/iconfont.css'
+Vue.use(VueAwesomeSwiper)
+
+
 Vue.prototype.bus = new Vue();
 
 

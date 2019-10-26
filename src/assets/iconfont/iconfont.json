@@ -1,0 +1,408 @@
+{
+  "id": "1452197",
+  "name": "垃圾",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "213305",
+      "name": "3.1-爱车估价",
+      "font_class": "31aichegujia",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "308984",
+      "name": "品牌大全~",
+      "font_class": "fensuijipinpaidaquan",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "821531",
+      "name": "节能环保",
+      "font_class": "jienenghuanbao",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "841856",
+      "name": "首页 主页 桌面 1000%",
+      "font_class": "shouyezhuyezhuomian1000",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
+    },
+    {
+      "icon_id": "883876",
+      "name": "环保",
+      "font_class": "huanbao",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "1211848",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "1240510",
+      "name": "意见反馈",
+      "font_class": "yijianfankui",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "1312044",
+      "name": "分享",
+      "font_class": "fenxiang",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "1687283",
+      "name": "意见反馈",
+      "font_class": "ziyuan",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "2076317",
+      "name": " 意见反馈",
+      "font_class": "yijianfankui1",
+      "unicode": "e8a1",
+      "unicode_decimal": 59553
+    },
+    {
+      "icon_id": "2131335",
+      "name": "环保",
+      "font_class": "huanbao1",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "2677961",
+      "name": "时间",
+      "font_class": "shijian1",
+      "unicode": "e6e1",
+      "unicode_decimal": 59105
+    },
+    {
+      "icon_id": "3050508",
+      "name": "定位",
+      "font_class": "location",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "3327794",
+      "name": "服务顾问",
+      "font_class": "fuwuguwen",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "3366115",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
+    },
+    {
+      "icon_id": "3781697",
+      "name": "个人定制",
+      "font_class": "gerendingzhi",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "3786901",
+      "name": "按键功能",
+      "font_class": "yanjizhushou-shangchuan_anjiangongneng",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "3786920",
+      "name": "屏幕外观",
+      "font_class": "yanjizhushou-shangchuan_pingmuwaiguan",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "3877048",
+      "name": "服务",
+      "font_class": "fuwu",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "4329377",
+      "name": "服务管理",
+      "font_class": "fuwuguanli",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "4520166",
+      "name": "客服",
+      "font_class": "kefu",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    },
+    {
+      "icon_id": "5182599",
+      "name": "饭",
+      "font_class": "-",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "5193362",
+      "name": "清洁",
+      "font_class": "qingjie",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "5201457",
+      "name": "花 (11)",
+      "font_class": "hua",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "5325400",
+      "name": "厨房厨具kitchen-电饭煲电饭锅el",
+      "font_class": "chufangchujukitchen-dianfanbaodianfanguoel",
+      "unicode": "e6d4",
+      "unicode_decimal": 59092
+    },
+    {
+      "icon_id": "5388017",
+      "name": "包裹_环保盒_o",
+      "font_class": "baoguo_huanbaohe_o",
+      "unicode": "ebb6",
+      "unicode_decimal": 60342
+    },
+    {
+      "icon_id": "5412469",
+      "name": "客服",
+      "font_class": "kefu-copy-copy",
+      "unicode": "e6b7",
+      "unicode_decimal": 59063
+    },
+    {
+      "icon_id": "5587222",
+      "name": "关于",
+      "font_class": "guanyu",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "5588717",
+      "name": "意见",
+      "font_class": "yijian",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "5622564",
+      "name": "米饭 MBE",
+      "font_class": "mifanMBE",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "5771062",
+      "name": "意见反馈",
+      "font_class": "Opinion",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "5838780",
+      "name": "意见",
+      "font_class": "yijian1",
+      "unicode": "e86f",
+      "unicode_decimal": 59503
+    },
+    {
+      "icon_id": "6027485",
+      "name": "地址",
+      "font_class": "dizhi",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "6077742",
+      "name": "预约",
+      "font_class": "reserve",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "6322608",
+      "name": "设置",
+      "font_class": "shezhi1",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "6352445",
+      "name": "报修",
+      "font_class": "baoxiu",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "6537186",
+      "name": "服务",
+      "font_class": "fuwu1",
+      "unicode": "e66d",
+      "unicode_decimal": 58989
+    },
+    {
+      "icon_id": "6765150",
+      "name": "家具产品—电饭煲",
+      "font_class": "tubiaozhizuomoban-",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "7145728",
+      "name": "预约、历史、时间",
+      "font_class": "yuyuelishishijian",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "7466480",
+      "name": "地球，环保，绿色",
+      "font_class": "huabanfuben",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "7466488",
+      "name": "合作、组织关系，拼图，商务",
+      "font_class": "huabanfuben2",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    },
+    {
+      "icon_id": "7466526",
+      "name": "合作，握手",
+      "font_class": "huabanfuben3",
+      "unicode": "e695",
+      "unicode_decimal": 59029
+    },
+    {
+      "icon_id": "7466537",
+      "name": "节能，环保，绿色，健康",
+      "font_class": "huabanfuben1",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    },
+    {
+      "icon_id": "7525614",
+      "name": "认证",
+      "font_class": "renzheng",
+      "unicode": "e79f",
+      "unicode_decimal": 59295
+    },
+    {
+      "icon_id": "7549373",
+      "name": "招商",
+      "font_class": "RectangleCopy",
+      "unicode": "e6a6",
+      "unicode_decimal": 59046
+    },
+    {
+      "icon_id": "7842806",
+      "name": "pre_icon_预约取现",
+      "font_class": "pre_icon_yuyuequxian",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "7864096",
+      "name": "shinshop 环保",
+      "font_class": "shinshophuanbao",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "8206808",
+      "name": "低碳环保",
+      "font_class": "dthb",
+      "unicode": "e768",
+      "unicode_decimal": 59240
+    },
+    {
+      "icon_id": "8408357",
+      "name": "客服",
+      "font_class": "icon-",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "8652790",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "9039240",
+      "name": "危险",
+      "font_class": "weixian",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "9297193",
+      "name": "饭",
+      "font_class": "fan",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "9495520",
+      "name": "时间",
+      "font_class": "shijian",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "9731185",
+      "name": "我的",
+      "font_class": "wode1",
+      "unicode": "e7c0",
+      "unicode_decimal": 59328
+    },
+    {
+      "icon_id": "10150386",
+      "name": "客服",
+      "font_class": "kefu1",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "10468852",
+      "name": "隐私 公开",
+      "font_class": "icon-test",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "10809190",
+      "name": "加 添加",
+      "font_class": "changyongtubiao-xianxingdaochu-zhuanqu-",
+      "unicode": "e70a",
+      "unicode_decimal": 59146
+    }
+  ]
+}

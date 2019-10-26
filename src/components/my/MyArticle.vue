@@ -1,6 +1,6 @@
 <template>
   <div class="my-article">
-    <van-nav-bar title="我的文章" left-arrow fixed @click-left="$router.go(-1)" />
+    <van-nav-bar title="我的文章"  right-text="添加文章" left-arrow fixed @click-left="$router.go(-1)" @click-right="$router.push('/article')" />
     
     <main>
       <!--  -->
@@ -8,7 +8,7 @@
         <van-swipe-cell :on-close="onClose" :name="i.id" v-if="i.show">
           <div class="articles van-hairline--bottom" @click="$router.push({path: '/setarticle', query: {id: i.id}})" >
           
-          <van-image class="order-wrap-img" width="26vw" height="16vw" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <van-image class="order-wrap-img" width="26vw" height="16vw" :src="i.image" />
           <div class="article-text">
             <div class="article-time">
               <van-tag color="#f2826a" class="post" plain>专栏</van-tag>

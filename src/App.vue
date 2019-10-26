@@ -36,9 +36,10 @@ export default {
 </script>
 
 <style>
+
 html {
   position: relative;
-  background-color: #f7faff;
+  background-color: #f5f5f5;
   box-sizing: border-box;
 }
 
@@ -46,6 +47,7 @@ html,
 body,
 #app {
   width: 100%;
+  overflow-x: hidden;
   font-size: 0.4rem;
 }
 

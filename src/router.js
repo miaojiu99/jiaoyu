@@ -5,11 +5,18 @@ import Home from "./views/Home.vue";
 Vue.use(Router);
 
 const RouterModel = new Router({
-  routes: [
-    {
+  routes: [{
       path: "/",
       name: "home",
       component: Home,
+      meta: {
+        index: 1,
+      }
+    },
+    {
+      path: "/classify",
+      name: "classify",
+      component: () => import("./views/Classify.vue"),
       meta: {
         index: 1,
       }
@@ -94,7 +101,7 @@ const RouterModel = new Router({
       name: "details",
       component: () => import("@/components/details/details.vue"),
       meta: {
-        index: 2
+        index: 2,
       }
     },
 
@@ -107,12 +114,14 @@ const RouterModel = new Router({
       }
     },
 
+    // 申请入驻
     {
       path: "/apply",
       name: "apply",
       component: () => import("@/components/apply/apply.vue"),
       meta: {
-        index: 3
+        index: 3,
+        keepAlive: true //需要被缓存
       }
     },
 
@@ -204,11 +213,11 @@ const RouterModel = new Router({
         index: 3
       }
     },
-    
+
     // 我的文章
     {
       path: "/myarticle",
-      name: "bankall",
+      name: "myarticle",
       component: () => import("@/components/my/MyArticle.vue"),
       meta: {
         index: 2
@@ -242,6 +251,79 @@ const RouterModel = new Router({
       }
     },
 
+    // 形象照片
+    {
+      path: "/big-img",
+      name: "big-img",
+      component: () => import("@/components/my/BigImg.vue"),
+      meta: {
+        index: 2
+      }
+    },
+
+    // 个人理念
+    {
+      path: "/ana",
+      name: "ana",
+      component: () => import("@/components/my/Ana.vue"),
+      meta: {
+        index: 2
+      }
+    },
+
+    // 常见问题
+    {
+      path: "/often-issue",
+      name: "often-issue",
+      component: () => import("@/components/my/OftenIssue.vue"),
+      meta: {
+        index: 2
+      }
+    },
+
+    // 常见问题编辑
+    {
+      path: "/often-issue-two",
+      name: "often-issue-two",
+      component: () => import("@/components/my/OftenIssueTwo.vue"),
+      meta: {
+        index: 3
+      }
+    },
+
+    // 实名认证
+    {
+      path: "/approve",
+      name: "approve",
+      component: () => import("@/components/my/approve.vue"),
+      meta: {
+        index: 3
+      }
+    },
+
+
+    // 我的客服
+    {
+      path: "/service",
+      name: "service",
+      component: () => import("@/components/my/service.vue"),
+      meta: {
+        index: 3
+      }
+    },
+
+    // 提交保证金
+    {
+      path: "/submit-money",
+      name: "submit-money",
+      component: () => import("@/components/my/SubmitMoney.vue"),
+      meta: {
+        index: 3
+      }
+    },
+
+
+
   ]
 });
 
@@ -250,11 +332,15 @@ RouterModel.beforeEach((to, from, next) => {
   const token = window.localStorage.getItem("userID");
   if (!token) {
     if (!to.fullPath.startsWith("/login")) {
-      next({ name: "login" });
+      next({
+        name: "login"
+      });
       return;
     }
   } else if (to.name === "login") {
-    next({ name: "home" });
+    next({
+      name: "home"
+    });
     return;
   }
   next();

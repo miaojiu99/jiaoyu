@@ -17,22 +17,16 @@
       </div>
     </van-popup>
 
-    <main >
+    <main>
       <div
         class="order-wrap"
         @click="$router.push({path: '/details', query: {id: i.teacherId}})"
         v-for="i in dataList"
         :key="i.id"
       >
-        <van-cell :title=" '用户名:' + i.name" :value="i.condition" :label=" '订单编号:' + i.orderCode">
+        <van-cell :title=" '用户名:' + i.realName" :value="i.condition" :label=" '订单编号:' + i.orderCode">
           <!-- 头像 -->
-          <van-image
-            class="order-wrap-img"
-            round
-            width="1.2rem"
-            height="1.2rem"
-            :src="i.avatar"
-          >
+          <van-image class="order-wrap-img" round width="1.2rem" height="1.2rem" :src="i.image">
             <template v-slot:error>加载失败</template>
           </van-image>
 
@@ -54,7 +48,7 @@
         <div class="order-flex" v-else>
           <!-- 评价 -->
           <van-tag
-            v-show="i.status == 2"
+            v-show="i.status == 3"
             plain
             round
             type="success"
@@ -66,6 +60,16 @@
               }
             })"
           >评价</van-tag>
+
+          <!-- 完成 -->
+          <van-tag
+            v-show="i.status == 2"
+            plain
+            round
+            type="success"
+            @click.stop="onClickOrder(i.id)"
+            size="medium"
+          >完成</van-tag>
 
           <!-- 取消订单 -->
           <van-tag
@@ -93,7 +97,7 @@
 </template>
 
 <script>
-import { orderList, global, cancel, okOrder, upMoney } from "@/api";
+import { orderList, global, cancel, okOrder, upMoney, buyList } from "@/api";
 export default {
   data() {
     return {
@@ -107,32 +111,63 @@ export default {
 
   mounted() {
     this.isTeacher = this.$route.query.teacher;
+    const status = this.$route.query.num;
 
     setTimeout(() => {
       const data = {
-        userId: window.localStorage.getItem("userID")
+        userId: window.localStorage.getItem("userID"),
+        status
       };
 
-      orderList(data).then(res => {
-        if (res.code == 1) {
-          const data = res.data;
-          const list = data.map((item, index) => {
-            item.avatar = global() + item.avatar;
-            if (item.status == 1) {
-              item.condition = "待付款";
-            }
-            if (item.status == 2) {
-              item.condition = "付款成功";
-            }
-            if (item.status == 5) {
-              item.condition = "已取消";
-            }
+      if (this.isTeacher) {
+        orderList(data).then(res => {
+          if (res.code == 1) {
+            const data = res.data;
+            const list = data.map((item, index) => {
+              item.avatar = global() + item.avatar;
+              if (item.status == 1) {
+                item.condition = "待付款";
+              }
+              if (item.status == 2) {
+                item.condition = "进行中";
+              }
+              if (item.status == 3) {
+                item.condition = "已完成";
+              }
+              if (item.status == 5) {
+                item.condition = "已取消";
+              }
 
-            return item;
-          });
-          this.dataList = list;
-        }
-      });
+              return item;
+            });
+            this.dataList = list;
+          }
+        });
+      } else {
+        buyList(data).then(res => {
+          if (res.code == 1) {
+            const data = res.data;
+            const list = data.map((item, index) => {
+              item.avatar = global() + item.avatar;
+              if (item.status == 1) {
+                item.condition = "待付款";
+              }
+              if (item.status == 2) {
+                item.condition = "进行中";
+              }
+              if (item.status == 3) {
+                item.condition = "已完成";
+              }
+              if (item.status == 5) {
+                item.condition = "已取消";
+              }
+
+              return item;
+            });
+            this.dataList = list;
+          }
+        });
+      }
     }, 400);
   },
 
@@ -154,6 +189,17 @@ export default {
         } else {
           this.$toast(res.msg);
         }
+      });
+    },
+
+    // 已完成
+    onClickOrder(id) {
+      console.log(id);
+      const data = {
+        orderId: id
+      };
+      okOrder().then(res => {
+        console.log(res);
       });
     },
 
@@ -250,7 +296,7 @@ export default {
     position: relative;
     margin-bottom: 0.3rem;
     background: #fff;
-    padding:0 0.4rem 0.4rem;
+    padding: 0 0.4rem 0.4rem;
 
     .van-cell__value {
       overflow: initial;
@@ -263,7 +309,7 @@ export default {
     }
 
     .order-wrap-money {
-      font-size: .38rem;
+      font-size: 0.38rem;
       position: absolute;
       left: 0vw;
       text-align: right;

@@ -4,39 +4,38 @@
 
     <section>
       <van-sidebar v-model="activeKey" @change="changeActiveKey">
-        <van-sidebar-item
-          :title="i.grade"
-          v-for="(i, index) in teacherTypeList"
-          :key="index"
-        />
+        <van-sidebar-item :title="i.grade" v-for="(i, index) in teacherTypeList" :key="index" />
       </van-sidebar>
       <div class="especially">
-        <img src="@/assets/images/sad.png" class="classify-img" />
+        <!-- <img src="@/assets/images/sad.png" class="classify-img" /> -->
         <div class="classify-content">
-          <van-divider :style="{ color: '#f95341', borderColor: '#ccc', padding: '0 50px'}" >{{content.grade}}</van-divider>
-          <a></a>
-          <van-tag
-            plain
-            size="medium"
-            v-for="(item, indexItme) in content.type"
-            :key="indexItme"
-            @click="$router.push({name: 'search', query: {id: item.type_id, name: 1}})"
-          >{{item.type}}</van-tag>
+          <a>{{content.grade}}</a>
+          <van-grid :border="false" :column-num="2" :gutter="15">
+            <van-grid-item
+              v-for="(item, indexItme) in content.type"
+              :key="indexItme"
+              @click="$router.push({name: 'search', query: {id: item.type_id, name: 1}})"
+            >
+              <van-image :src="item.image" />
+              <p>{{item.type}}</p>
+            </van-grid-item>
+          </van-grid>
         </div>
       </div>
     </section>
 
     <van-tabbar v-model="active">
       <van-tabbar-item icon="wap-home" to="/">首页</van-tabbar-item>
-      <van-tabbar-item icon="graphic" to="/classify">分类</van-tabbar-item>
-      <van-tabbar-item icon="award" to="/quiz">学堂</van-tabbar-item>
+      <van-tabbar-item icon="graphic" to="/classify">学堂</van-tabbar-item>
+      <van-tabbar-item icon="award" to="/quiz">大家说</van-tabbar-item>
+      <van-tabbar-item icon="friends" >职场</van-tabbar-item>
       <van-tabbar-item icon="manager" to="my">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
 
 <script>
-import { teacherTypeWrap } from "@/api";
+import { teacherTypeWrap, global } from "@/api";
 
 export default {
   data() {
@@ -44,7 +43,7 @@ export default {
       teacherTypeList: "",
       active: 1,
 
-      content: '',
+      content: "",
 
       activeKey: 0,
       offsetTopArr: []
@@ -92,16 +91,21 @@ export default {
         if (res.code == 1) {
           let number = 0;
           this.teacherTypeList = res.data.grade;
-          this.content = this.teacherTypeList[this.activeKey]
-          console.log(this.content)
-          console.log(this.teacherTypeList);
+          this.content = this.teacherTypeList[this.activeKey];
+          for (let i of this.content.type) {
+            i.image = global() + i.image;
+          }
+
         }
       });
     },
 
     changeActiveKey(value) {
       this.activeKey = value;
-      this.content = this.teacherTypeList[value]
+      this.content = this.teacherTypeList[value];
+      for (let i of this.content.type) {
+        i.image = global() + i.image;
+      }
     }
   }
 };
@@ -111,36 +115,44 @@ export default {
 .classify {
   width: 100vw;
   min-height: 100vh;
-  background: #fff;
+  background: #f7f7f7;
 
   section {
-    
     display: flex;
   }
 
   .especially {
     padding-bottom: 20vh;
   }
-.classify-img{
-  width: 70vw;padding: 0.4rem;
-  padding-bottom: 0;
-}
+  .classify-img {
+    width: 70vw;
+    padding: 0.4rem;
+    padding-bottom: 0;
+  }
   .classify-content {
-    padding: 0.4rem 0rem 0.4rem 0.4rem;
+    padding: 0.4rem 0rem ;
     width: 72vw;
-
-    a {
-      display: block;
+a{
+  padding-left: 15px;
+}
+    .van-grid {
+      margin-top: 15px;
     }
-.van-grid-item__content{
-      padding: 8px;
-      P{
+
+    .van-grid-item__content {
+      border-radius: 15px;
+      padding: 24px 12px;
+      .van-image__img {
+        width: 8vw;
+        height: 8vw;
+      }
+      p {
         font-size: 14px;
         color: #333;
         margin-top: 0.2rem;
       }
     }
-.van-divider{
+    .van-divider {
       margin: 0;
     }
   }
@@ -150,13 +162,15 @@ export default {
     position: sticky;
     top: 19vw;
     height: 85vh;
-background: #fafafa;
+    background: #fff;
   }
-  .van-sidebar-item{
+  .van-sidebar-item {
     text-align: center;
+    background: #fff;
   }
-.van-sidebar-item--select{
+  .van-sidebar-item--select {
     border-color: #ff8c68;
+    background: #f7f7f7;
   }
   .van-tag {
     margin: 0.2rem 0.4rem 0.2rem 0;

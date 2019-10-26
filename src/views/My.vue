@@ -272,8 +272,9 @@
 
     <van-tabbar v-model="active">
       <van-tabbar-item icon="wap-home" to="/">首页</van-tabbar-item>
-      <van-tabbar-item icon="graphic" to="/classify">分类</van-tabbar-item>
-      <van-tabbar-item icon="award" to="/quiz">学堂</van-tabbar-item>
+      <van-tabbar-item icon="graphic" to="/classify">学堂</van-tabbar-item>
+      <van-tabbar-item icon="award" to="/quiz">大家说</van-tabbar-item>
+      <van-tabbar-item icon="friends" >职场</van-tabbar-item>
       <van-tabbar-item icon="manager" to="my">我的</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -286,7 +287,7 @@ export default {
   name: "my",
   data() {
     return {
-      active: 3,
+      active: 4,
       obj_data: {},
       isName: false,
       isTeacher: false
@@ -384,7 +385,7 @@ export default {
 
       span {
         display: inline-block;
-        width: 25vw;
+        width: 25vw;line-height: 0.8rem;
         text-align: center;
       }
     }
@@ -392,6 +393,7 @@ export default {
     .my-bar {
       width: 0.2vw;
       height: 7vw;
+      margin-top: 0.4rem;
       background: #fff;
     }
 

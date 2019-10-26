@@ -15,7 +15,8 @@
       <van-cell title="性别" :value="sex" @click="showPicker = true" is-link />
       <van-cell title="手机号" :value="userPhone" is-link />
       <van-cell title="银行卡" is-link to="/bankall" />
-      <van-cell title="个人介绍" is-link to="/amend" />
+      <van-cell title="实名认证" is-link @click="$router.push({path: '/approve', query: {real: obj_data.real}})"/>
+      <van-cell title="提交保证金" v-if="obj_data.state == 1" is-link to="/submit-money" />
     </main>
 
     <van-dialog v-model="dialogShow" show-cancel-button @confirm="onConfirmName">
@@ -49,6 +50,7 @@ export default {
       dialogShow: false, //弹出框显隐
       showPicker: false, // 显示男女选择
       columns: ["男", "女"],
+      obj_data: '',
       avatarImage: ""
     };
   },
@@ -68,6 +70,7 @@ export default {
         } else {
           this.sex = "女";
         }
+        this.obj_data = data;
         this.userPhone = data.phone;
       }
     });

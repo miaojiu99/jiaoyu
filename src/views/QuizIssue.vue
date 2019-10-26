@@ -4,12 +4,12 @@
       title="发表问题"
       right-text="确认发布"
       left-arrow
-      fixed
       @click-left="$router.go(-1)"
       @click-right="onClickRight"
     />
     <main>
       <input class="quiz-issue-title" type="text" v-model="title" placeholder="标题最多可输入40个字符哦~" />
+      <van-cell title="问题类型" @click="issueTypeShow = true" is-link :value="typeValue" />
       <textarea
         class="quiz-issue-textarea"
         v-model="message"
@@ -18,20 +18,63 @@
         rows="12"
       ></textarea>
     </main>
+    <!-- 问题类型弹出 -->
+    <van-popup v-model="issueTypeShow" position="bottom" :style="{ height: '30%' }">
+      <van-picker
+        show-toolbar
+        title="标题"
+        :columns="arrList"
+        @cancel="onCancel"
+        @confirm="onConfirm"
+      />
+    </van-popup>
   </div>
 </template>
 
 <script>
-import { addQuestion } from "@/api";
+import { addQuestion, questionType, global } from "@/api";
 export default {
   data() {
     return {
       title: "",
-      message: ""
+      message: "",
+      typeId: '',
+      typeValue: '',
+      arrList: [],
+      questionTypeList: '', //
+      issueTypeShow: false // 问题类型弹框显隐
     };
   },
 
+  mounted() {
+    questionType().then(res => {
+      if (res.code == 1) {
+        for (let i of res.data) {
+          this.arrList.push(i.type)
+        }
+
+        this.questionTypeList = res.data;
+      }
+    });
+  },
+
   methods: {
+    onChange(value) {
+      console.log(value);
+    },
+    //点击类型取消
+    onCancel() {
+      this.issueTypeShow = false;
+    },
+
+
+    //点击类型确认
+    onConfirm(value, index) {
+      this.typeValue = value;
+      this.typeId = this.questionTypeList[index].id;
+      this.issueTypeShow = false;
+    },
+
     onClickRight() {
       if (this.title == "") {
         this.$toast("标题不能为空");
@@ -39,6 +82,7 @@ export default {
         this.$toast("内容不能为空");
       } else {
         const data = {
+          typeId: this.typeId,
           userId: window.localStorage.getItem("userID"),
           title: this.title,
           message: this.message
@@ -61,10 +105,14 @@ export default {
 
   main {
     margin-bottom: 10vh;
-    margin-top: 12vh;
     padding: 0.4rem;
   }
-
+  .van-cell{
+    padding: 16px 0;
+  }
+.van-cell:not(:last-child)::after{
+  left:0;
+}
   .quiz-issue-title {
     outline: 0;
     display: block;
@@ -84,7 +132,8 @@ export default {
     box-sizing: border-box;
     border: 0;
     overflow-y: auto;
-    height: 70vh;
+    height: 50vh;
+    margin-top: 0.5rem;
     word-break: break-all; //解决兼容问题
   }
 }

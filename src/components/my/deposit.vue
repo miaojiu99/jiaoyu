@@ -3,6 +3,8 @@
     <van-nav-bar title="零钱提现" left-arrow @click-left="$router.go(-1)" />
 
     <main>
+      <p>已提现金额 {{obj_data.amount}} </p>
+      <br>
       <div class="deposit-main">
         <div class="deposit-main-top">
           <span>到账银行卡</span>
@@ -36,6 +38,12 @@
           >提现</van-button>
         </div>
       </div>
+
+      <br />
+      <br />
+      <p>提现记录</p>
+      <br />
+      <van-cell v-for="(i, index) in recordList" :key="index" :title=" '提现金额 ' +  i.money" :value="i.update_time" :label="i.status" />
     </main>
 
     <van-popup v-model="show" position="bottom" :style="{ height: '60%' }">
@@ -60,11 +68,12 @@
 </template>
 
 <script>
-import { withdrawal, wallet } from "@/api";
+import { withdrawal, wallet, withdrawalList } from "@/api";
 
 export default {
   data() {
     return {
+      recordList: "", //提现记录
       valueInput: "",
       type: "",
       obj_data: "",
@@ -88,16 +97,40 @@ export default {
         if (!data.bank) {
           this.obj_data.bank = "请填写银行卡";
         } else {
-          this.obj_data.bank = this.obj_data.bank.substr(-4)
+          this.obj_data.bank = this.obj_data.bank.substr(-4);
         }
       }
     });
+
+    // 提现记录
+    this.record(data);
   },
 
   methods: {
     // 点击全部提现
     onClickMoney(value) {
       this.valueInput = value;
+    },
+
+    // 提现记录
+    record(data) {
+      withdrawalList(data).then(res => {
+        if (res.data.length !== 0) {
+          this.recordList = res.data;
+
+          for (let i of res.recordList) {
+            if (i.status == 1) {
+              i.status = "待提现";
+            }
+            if (i.status == 2) {
+              i.status = "审核通过";
+            }
+            if (i.status == 3) {
+              i.status = "审核拒绝";
+            }
+          }
+        }
+      });
     },
 
     //提现
@@ -207,7 +240,7 @@ export default {
   }
   .all {
     color: #888;
-    margin-top: .3rem;
+    margin-top: 0.3rem;
   }
   .btn {
     padding: 0.4rem;
