@@ -1,7 +1,7 @@
 import request from "@/utils/request";
 
 export function global() {
-  return "http://zyxb.tianzhuowangluo.com/upload/";
+  return "http://zyxb.xinghaoruiye.com/upload/";
 }
 
 // 头像上传

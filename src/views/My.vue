@@ -27,7 +27,7 @@
       <div class="my-top-btn">
         <span @click.stop="$router.push('/balance')">
           {{obj_data.wallet}}
-          <br />我的余额
+          <br />我的钱包
         </span>
 
         <div class="my-bar"></div>

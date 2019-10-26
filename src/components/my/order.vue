@@ -3,7 +3,7 @@
     <van-nav-bar title="我的订单" left-arrow fixed @click-left="$router.go(-1)" />
     <van-popup closeable v-model="show">
       <div class="money">
-        <p>为{{obj_money.name}}修改价格</p>
+        <p>为{{obj_money.realName}}修改价格</p>
 
         <div class="input-flex van-hairline--bottom">
           <strong>￥</strong>

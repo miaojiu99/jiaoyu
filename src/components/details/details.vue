@@ -10,8 +10,8 @@
     />
     <van-image width="100vw" style="margin-top: 20vw;" height="50vw" :src="obj_data.avatar" />
     <div class="details-header">
-      <div class="details-header-desc"><h3>{{obj_data.name}}老师</h3></div>
-      <p class="details-header-phone">没有教不好的学生</p>
+      <div class="details-header-desc"><h3>{{obj_data.realName}}</h3></div>
+      <p class="details-header-phone">{{obj_data.title}}</p>
     </div>
     <!-- 手机号:{{obj_data.phone}} -->
     <!-- 购买 -->
